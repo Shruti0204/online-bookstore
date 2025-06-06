@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Online Book Store</title>
+  <link rel="stylesheet" href="style.css">
+    
+   
+</head>
+<body>
+  <nav>
+    <div class="logo">BookStore</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#featured">Featured</a>
+      <a href="#arrivals">Arrivals</a>
+      <a href="#cart">Cart</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <section id="home">
+    <h1>Welcome to Our Online Book Store!</h1>
+    <p style="text-align:center; max-width:600px; margin:20px auto; font-size: 22px;">Browse our collection of top picks and latest arrivals. Enjoy reading and shopping from the comfort of your home!</p>
+  </section>
+
+  <section id="featured">
+    <h2>Featured Books</h2><br><br>
+    <div class="container" id="featured-list"></div>
+  </section>
+
+  <section id="arrivals">
+    <h2>New Arrivals</h2><br><br>
+    <div class="container" id="arrivals-list"></div>
+  </section>
+
+  <section class="cart-section" id="cart">
+    <h2>Your Cart</h2><br><br>
+    <div class="cart-box" id="cart-box"></div>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2><br><br>
+    <p style="text-align:center; max-width:600px; margin:20px auto; font-size: 22px;">
+      We are passionate about books and bringing them closer to readers. Our online bookstore offers a curated selection of titles ranging from bestsellers to hidden gems. Happy Reading!
+    </p>
+  </section>
+
+  <script>
+    const featuredBooks = [
+      { title: "Atomic Habits", price: "₹400", image: "https://m.media-amazon.com/images/I/81F90H7hnML._SL1500_.jpg" },
+      { title: "The Alchemist", price: "₹300", image: "https://m.media-amazon.com/images/I/61HAE8zahLL._SL1331_.jpg" },
+      { title: "Big Magic", price: "₹350", image: "https://m.media-amazon.com/images/I/814PoPnrBQL._SL1500_.jpg" },
+      { title: "Think Like a Monk", price: "₹380", image: "https://m.media-amazon.com/images/I/81s6DUyQCZL.jpg" },
+      { title: "Enegies Your Mind", price: "₹500", image: "https://m.media-amazon.com/images/I/71B4h-dSVzL._SL1500_.jpg" },
+    ];
+
+    const arrivalsBooks = [
+      { title: "The Power of Now", price: "₹420", image: "https://m.media-amazon.com/images/I/61Ij8nLooNL._SL1500_.jpg" },
+      { title: "Rich Dad Poor Dad", price: "₹370", image: "https://m.media-amazon.com/images/I/81BE7eeKzAL._SL1500_.jpg" },
+      { title: "Ikigai", price: "₹390", image: "https://m.media-amazon.com/images/I/81l3rZK4lnL._SL1500_.jpg" },
+      { title: "Deep Work", price: "₹450", image: "https://m.media-amazon.com/images/I/81JJ7fyyKyS._SL1500_.jpg" },
+      { title: "You Can", price: "₹280", image: "https://m.media-amazon.com/images/I/71TvSqVpBHL._SL1500_.jpg" },
+    ];
+
+    const featuredList = document.getElementById("featured-list");
+    const arrivalsList = document.getElementById("arrivals-list");
+    const cartBox = document.getElementById("cart-box");
+
+    function createBookElement(book) {
+      const div = document.createElement("div");
+      div.classList.add("book");
+      div.innerHTML = `
+        <img src="${book.image}" alt="${book.title}" />
+        <h3>${book.title}</h3>
+        <p><strong>${book.price}</strong></p>
+        <button class="add-btn" onclick="addToCart('${book.title}', '${book.price}')">Add to Cart</button>
+        <button class="buy-btn" onclick="buyNow('${book.title}')">Buy Now</button>
+      `;
+      return div;
+    }
+
+    featuredBooks.forEach(book => featuredList.appendChild(createBookElement(book)));
+    arrivalsBooks.forEach(book => arrivalsList.appendChild(createBookElement(book)));
+
+    function addToCart(title, price) {
+      alert(`Your item is added to cart "${title}"!`);
+      const item = document.createElement("div");
+      item.classList.add("cart-item");
+      // item.textContent = title;
+       item.textContent = `${title} - ${price}`;
+      cartBox.appendChild(item);
+    }
+
+    function buyNow(title) {
+      alert(`Thank you for buying "${title}"!`);
+    }
+  </script>
+</body>
+</html>
+
